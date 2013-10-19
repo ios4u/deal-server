@@ -56,6 +56,12 @@ post '/send_sms' do
   }
   logger.info message
   
-  SmsSender.perform_async(message)
+  sidekiq_enabled = ENV['SIDEKIQ_ENABLED'].to_i || 0
+  if sidekiq_enabled == 1
+    SmsSender.perform_async(message)
+  else
+    SmsSender.perform(message)
+  end
+  
   [202, ["Your message is sent."]]
 end
