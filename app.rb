@@ -39,7 +39,7 @@ get '/token' do
   capability = Twilio::Util::Capability.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
 
   # allow outgoing calls to an application
-  capability.allow_client_outgoing 'APabe7650f654fc34655fc81ae71caa3ff'
+  capability.allow_client_outgoing 'AP35a6b64d2a1af17b1f8efca8daa9aeaf'
 
   # allow incoming calls to 'monkey'
   capability.allow_client_incoming 'inquiry'
