@@ -41,7 +41,7 @@ get '/testapp' do
   if sidekiq_enabled == 1
     SmsSender.perform_async(message)
   else
-    SmsSender.perform(message)
+    SmsSender.new.perform(message)
   end
   content_type 'text/xml'
   "<Response><Say>Hello! Help is on its way, please keep tight!</Say></Response>"
