@@ -30,7 +30,8 @@ get '/deals' do
 end
 
 get '/testapp' do 
-  [200, ""]
+  content_type 'text/xml'
+  "<Response><Say>Hello! Help is on its way, please keep tight!</Say></Response>"
 end
 
 get '/token' do
