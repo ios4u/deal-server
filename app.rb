@@ -30,6 +30,19 @@ get '/deals' do
 end
 
 get '/testapp' do 
+  message = { 
+    from: ENV['TWILIO_NUMBER'],
+    to: ENV['MESSAGE_DESK_NUMBER'],
+    body: "Customer needs help!"
+  }
+  logger.info message
+  
+  sidekiq_enabled = ENV['SIDEKIQ_ENABLED'].to_i || 0
+  if sidekiq_enabled == 1
+    SmsSender.perform_async(message)
+  else
+    SmsSender.perform(message)
+  end
   content_type 'text/xml'
   "<Response><Say>Hello! Help is on its way, please keep tight!</Say></Response>"
 end
