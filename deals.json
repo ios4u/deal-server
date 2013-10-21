@@ -4,20 +4,23 @@
     "title" : "All laptops off 15%",
     "description" : "Back to school sale, all laptops are off 15% for this weekend.",
     "major" : 0,
-    "minor" : 0
+    "minor" : 0,
+    "location_name" : "Laptop Aisle"
   },
   {
     "image" : "deal2.jpg",
     "title" : "iPhone 5 off 20%",
     "description" : "Inventory clear out sale, all iPhone 5 models are 20% off this weekend.",
     "major" : 0,
-    "minor" : 1    
+    "minor" : 1,
+    "location_name" : "Phone Aisle"    
   },
   {
     "image" : "deal3.jpg",
     "title" : "All iPads are on sale, 15% off.",
     "description" : "Great pre-Christmas deals for iPads.",
     "major" : 0,
-    "minor" : 2   
+    "minor" : 2,
+    "location_name" : "Tablets Aisle"   
   }  
 ]
