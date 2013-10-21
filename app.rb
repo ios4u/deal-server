@@ -46,6 +46,8 @@ get '/token' do
 
   # generate the token string
   @token = capability.generate
+
+  [200, {"Content-Type" => "application/json"}, {token: @token}.to_json]
 end
 
 post '/send_sms' do 
