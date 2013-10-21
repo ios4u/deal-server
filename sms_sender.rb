@@ -7,9 +7,9 @@ class SmsSender
   def perform(message)
     client = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
     client.account.messages.create(
-      :from => message["from"],
-      :to => message["to"],
-      :body => message["body"]
+      :from => message["from"] || message[:from],
+      :to => message["to"] || message[:to],
+      :body => message["body"] || message[:body]
     )
   end
 end
