@@ -11,7 +11,7 @@ end
 get '/deals' do 
   deals_json = IO.read(File.expand_path("../deals.json", __FILE__))
   deals = JSON.parse(deals_json, symbolize_names: true)
-  # Simple linear filtering of JSON content for demo purposes
+  # Simple O(nm) filtering of JSON content for demo purposes
   filtered_deals = deals
   if request.params["minor"]
     minor_list = request.params["minor"].split(',')
@@ -35,22 +35,15 @@ get '/testapp' do
 end
 
 get '/token' do
-  # set up
   capability = Twilio::Util::Capability.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
-
-  # allow outgoing calls to an application
   capability.allow_client_outgoing 'AP35a6b64d2a1af17b1f8efca8daa9aeaf'
 
-  # allow incoming calls to 'monkey'
-  capability.allow_client_incoming 'inquiry'
-
-  # generate the token string
   @token = capability.generate
 
   [200, {"Content-Type" => "application/json"}, {token: @token}.to_json]
 end
 
-post '/send_sms' do 
+post '/sms' do 
   payload = JSON.parse(request.body.read, symbolize_names: true)
   message = { 
     from: ENV['TWILIO_NUMBER'],
@@ -66,5 +59,5 @@ post '/send_sms' do
     SmsSender.new.perform(message)
   end
   
-  [202, ["Your message is sent."]]
+  [202, {"Content-Type" => "application/json"}, {message: "Your message is sent."}.to_json]
 end
