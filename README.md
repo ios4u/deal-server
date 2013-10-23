@@ -2,7 +2,7 @@
 
 This is the server side for the sample iOS application that demonstrates using iBeacons and Twilio APIs. This provides API support to download a sample list of deals, sending SMS message using Twilio API and serving capability tokens for the Twilio iOS client.
 
-Please read the README file for the iOS application to learn more about the scenario and the application.
+Please read the README file for the iOS application [Dealcast](https://github.com/keremk/dealcast) to learn more about the scenario and the application.
 
 # Installation
 
